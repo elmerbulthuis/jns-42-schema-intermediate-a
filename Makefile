@@ -13,6 +13,7 @@ rebuild: clean build
 
 build: \
 	out/static/version.txt \
+	out/static/schema \
 	out/schema \
 
 clean:
@@ -20,9 +21,15 @@ clean:
 
 out/static/version.txt:
 	@mkdir --parents $(@D)
-	echo $(VERSION) > $@
+	
+	echo $(PACKAGE_VERSION) > $@
 
-out/%: src/%.json
+out/static/%: src/%.yaml
+	@mkdir --parents $(@D)
+
+	npx js-yaml $< > $@
+
+out/%: out/static/%
 	npx jns42-generator package file://${PWD}/$< \
 		--package-directory $@ \
 		--package-name $(PACKAGE_NAME) \
