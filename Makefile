@@ -27,7 +27,7 @@ out/%: src/%.json
 		--package-directory $@ \
 		--package-name $(PACKAGE_NAME) \
 		--package-version $(PACKAGE_VERSION) \
-		
+
 
 	( cd $@ ; npm install --unsafe-perm )
 

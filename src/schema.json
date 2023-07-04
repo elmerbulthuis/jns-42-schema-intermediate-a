@@ -55,7 +55,7 @@
       }
     }
   ],
-  "required": ["nodes"],
+  "required": ["$schema","nodes"],
   "properties": {
     "$schema": {
       "type": "string",
