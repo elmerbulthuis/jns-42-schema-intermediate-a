@@ -3,43 +3,107 @@
   "$id": "https://schema.JsonSchema42.org/jns42-intermediate-a/schema.json",
   "title": "JsonSchema42 intermediate schema",
   "type": ["object"],
-  "required": [
-    "$schema",
-    "deprecated",
-    "title",
-    "description",
-    "examples",
-    "types",
-    "compounds"
+  "examples": [
+    {
+      "$schema": "https://schema.JsonSchema42.org/jns42-intermediate-a/schema.json",
+      "nodes": {
+        "file:///simple-object.json": {
+          "deprecated": false,
+          "title": "",
+          "description": "A very simple object",
+          "examples": [],
+          "types": [
+            {
+              "type": "interface",
+              "requiredProperties": ["id"],
+              "propertyTypeNodeIds": {
+                "id": "file:///simple-object.json#/properties/id",
+                "name": "file:///simple-object.json#/properties/name"
+              }
+            }
+          ],
+          "compounds": []
+        },
+        "file:///simple-object.json#/properties/id": {
+          "deprecated": false,
+          "title": "",
+          "description": "An identity",
+          "examples": [],
+          "types": [
+            {
+              "type": "number",
+              "numberType": "integer",
+              "minimumExclusive": 0
+            }
+          ],
+          "compounds": []
+        },
+        "file:///simple-object.json#/properties/name": {
+          "deprecated": false,
+          "title": "",
+          "description": "A name",
+          "examples": [],
+          "types": [
+            {
+              "type": "string",
+              "minimumLength": 2,
+              "maximumLength": 20
+            }
+          ],
+          "compounds": []
+        }
+      }
+    }
   ],
+  "required": ["nodes"],
   "properties": {
     "$schema": {
       "type": "string",
       "const": "https://schema.JsonSchema42.org/jns42-intermediate-a/schema.json"
     },
-    "superNodeId": { "type": "string" },
-    "deprecated": { "type": "boolean" },
-    "title": { "type": "string" },
-    "description": { "type": "string" },
-    "examples": {
-      "type": "array",
-      "items": true
-    },
-    "types": {
-      "type": "array",
-      "items": {
-        "$ref": "#/$defs/type-union"
-      }
-    },
-    "compounds": {
-      "type": "array",
-      "items": {
-        "$ref": "#/$defs/compound-union"
+    "nodes": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/node"
       }
     }
   },
 
   "$defs": {
+    "node": {
+      "type": ["object"],
+      "required": [
+        "deprecated",
+        "title",
+        "description",
+        "examples",
+        "types",
+        "compounds"
+      ],
+      "properties": {
+        "superNodeId": { "type": "string" },
+        "deprecated": { "type": "boolean" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "examples": {
+          "type": "array",
+          "items": true
+        },
+        "types": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/type-union"
+          }
+        },
+        "compounds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/compound-union"
+          }
+        }
+      }
+    },
+
     "type-union": {
       "oneOf": [
         { "$ref": "#/$defs/null-type" },
