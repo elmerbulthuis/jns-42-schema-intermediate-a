@@ -1,5 +1,5 @@
 env:
-  PACKAGE_NAME: "@jns42/jns42-schema-draft-2020-12"
+  PACKAGE_NAME: "@jns42/jns42-schema-intermediate-a"
 
 on:
   push:
